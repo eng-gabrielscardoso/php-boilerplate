@@ -1,13 +1,38 @@
 version: '3'
 
 services:
-    app:
-        container_name: 'app'
-    build:
-        context: '.'
-        dockerfile: Dockerfile
-    ports:
-        - '80:80'
-        - '443:443'
-    volumes:
-        - ./:/var/www/html
+    php:
+        image: php:apache
+        container_name: php
+        ports:
+            - '80:80'
+        networks:
+            - php-network
+        volumes:
+            - mysql-data:/var/www/html/data
+        command: bash -c "apt-get update && apt-get install -y git unzip && a2enmod rewrite && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && apache2-foreground"
+
+    mysql:
+        image: mysql:latest
+        container_name: mysql
+        ports:
+            - '3306:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: 'root'
+            MYSQL_ROOT_HOST: '%'
+            MYSQL_DATABASE: 'application'
+            MYSQL_USER: 'root'
+            MYSQL_PASSWORD: 'root'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        networks:
+            - php-network
+        volumes:
+            - mysql-data:/var/lib/mysql
+
+volumes:
+    mysql-data:
+        driver: local
+
+networks:
+    php-network:
+        driver: bridge

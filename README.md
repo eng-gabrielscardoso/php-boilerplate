@@ -1,8 +1,9 @@
-# PHP Boilerplate
-
-Simple boilerplate to develop PHP application without local installations of Apache + PHP + MySQL or installations of starter kits such as LAMP, WAMP, or XAMP. 
-
-This boilerplate uses Docker images pulled from official maintainers from Docker Hub with a simple structure to configure a sample application or using Composer.
+<div align="center">
+<h1>PHP Boilerplate</h1>
+<img src="https://skills.thijs.gg/icons?i=php,mysql,docker,linux,vscode,github,markdown" />
+<p>Simple boilerplate to develop PHP application without local installations of Apache + PHP + MySQL or installations of starter kits such as LAMP, WAMP, or XAMP.</p>
+<p>This boilerplate uses Docker images pulled from official maintainers from Docker Hub with a simple structure to configure a sample application or using Composer.</p>
+</div>
 
 ## Installation
 
